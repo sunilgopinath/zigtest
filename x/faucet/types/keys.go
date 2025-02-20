@@ -9,6 +9,9 @@ const (
 
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_faucet"
+
+	// TotalRequestKey is used to track total amount requested per address
+    TotalRequestKey = "TotalRequest/value/"
 )
 
 var (
