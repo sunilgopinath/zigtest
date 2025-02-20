@@ -1,0 +1,15 @@
+syntax = "proto3";
+package zigtest.faucet;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "zigtest/x/faucet/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "zigtest/x/faucet/Params";
+  option (gogoproto.equal) = true;
+
+  
+}
