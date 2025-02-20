@@ -19,13 +19,23 @@ func TestMsgRequest_ValidateBasic(t *testing.T) {
 			name: "invalid address",
 			msg: MsgRequest{
 				Creator: "invalid_address",
+				Amount: 1,
 			},
 			err: sdkerrors.ErrInvalidAddress,
 		}, {
 			name: "valid address",
 			msg: MsgRequest{
 				Creator: sample.AccAddress(),
+				Amount: 1,
 			},
+		},
+		{
+			name: "invalid amount",
+			msg: MsgRequest{
+				Creator: sample.AccAddress(),
+				Amount: 0,
+			},
+			err: sdkerrors.ErrInvalidRequest,
 		},
 	}
 	for _, tt := range tests {

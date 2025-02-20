@@ -1,42 +1,38 @@
-package types_test
+package types
 
 import (
 	"testing"
-
-	"zigtest/x/faucet/types"
 
 	"github.com/stretchr/testify/require"
 )
 
 func TestGenesisState_Validate(t *testing.T) {
-	tests := []struct {
-		desc     string
-		genState *types.GenesisState
-		valid    bool
-	}{
-		{
-			desc:     "default is valid",
-			genState: types.DefaultGenesis(),
-			valid:    true,
-		},
-		{
-			desc:     "valid genesis state",
-			genState: &types.GenesisState{
+    tests := []struct {
+        name string
+        gs   GenesisState
+        err  error
+    }{
+        {
+            name: "valid_genesis_state",
+            gs: GenesisState{
+                // Use the Params type from the same package
+                Params: Params{
+                    MaxPerRequest: 100_000_000,  // 100 tokens
+                    MaxPerAddress: 500_000_000,  // 500 tokens
+                },
+            },
+            err: nil,
+        },
+    }
 
-				// this line is used by starport scaffolding # types/genesis/validField
-			},
-			valid: true,
-		},
-		// this line is used by starport scaffolding # types/genesis/testcase
-	}
-	for _, tc := range tests {
-		t.Run(tc.desc, func(t *testing.T) {
-			err := tc.genState.Validate()
-			if tc.valid {
-				require.NoError(t, err)
-			} else {
-				require.Error(t, err)
-			}
-		})
-	}
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            err := tt.gs.Validate()
+            if tt.err != nil {
+                require.ErrorIs(t, err, tt.err)
+                return
+            }
+            require.NoError(t, err)
+        })
+    }
 }
