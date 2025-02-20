@@ -35,8 +35,6 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 type MsgUpdateParams struct {
 	// authority is the address that controls the module (defaults to x/gov unless overwritten).
 	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
-	// params defines the module parameters to update.
-	//
 	// NOTE: All parameters must be supplied.
 	Params Params `protobuf:"bytes,2,opt,name=params,proto3" json:"params"`
 }
@@ -126,15 +124,105 @@ func (m *MsgUpdateParamsResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgUpdateParamsResponse proto.InternalMessageInfo
 
+type MsgRequest struct {
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Amount  uint64 `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+}
+
+func (m *MsgRequest) Reset()         { *m = MsgRequest{} }
+func (m *MsgRequest) String() string { return proto.CompactTextString(m) }
+func (*MsgRequest) ProtoMessage()    {}
+func (*MsgRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_83e6beacc1ef850e, []int{2}
+}
+func (m *MsgRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgRequest.Merge(m, src)
+}
+func (m *MsgRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgRequest proto.InternalMessageInfo
+
+func (m *MsgRequest) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgRequest) GetAmount() uint64 {
+	if m != nil {
+		return m.Amount
+	}
+	return 0
+}
+
+type MsgRequestResponse struct {
+}
+
+func (m *MsgRequestResponse) Reset()         { *m = MsgRequestResponse{} }
+func (m *MsgRequestResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgRequestResponse) ProtoMessage()    {}
+func (*MsgRequestResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_83e6beacc1ef850e, []int{3}
+}
+func (m *MsgRequestResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgRequestResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgRequestResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgRequestResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgRequestResponse.Merge(m, src)
+}
+func (m *MsgRequestResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgRequestResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgRequestResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgRequestResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "zigtest.faucet.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "zigtest.faucet.MsgUpdateParamsResponse")
+	proto.RegisterType((*MsgRequest)(nil), "zigtest.faucet.MsgRequest")
+	proto.RegisterType((*MsgRequestResponse)(nil), "zigtest.faucet.MsgRequestResponse")
 }
 
 func init() { proto.RegisterFile("zigtest/faucet/tx.proto", fileDescriptor_83e6beacc1ef850e) }
 
 var fileDescriptor_83e6beacc1ef850e = []byte{
-	// 321 bytes of a gzipped FileDescriptorProto
+	// 401 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xaf, 0xca, 0x4c, 0x2f,
 	0x49, 0x2d, 0x2e, 0xd1, 0x4f, 0x4b, 0x2c, 0x4d, 0x4e, 0x2d, 0xd1, 0x2f, 0xa9, 0xd0, 0x2b, 0x28,
 	0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x83, 0x4a, 0xe8, 0x41, 0x24, 0xa4, 0x04, 0x13, 0x73, 0x33, 0xf3,
@@ -149,12 +237,17 @@ var fileDescriptor_83e6beacc1ef850e = []byte{
 	0x23, 0x31, 0x3d, 0x54, 0x6f, 0xea, 0x41, 0xcc, 0x77, 0xe2, 0x3c, 0x71, 0x4f, 0x9e, 0x61, 0xc5,
 	0xf3, 0x0d, 0x5a, 0x8c, 0x41, 0x50, 0x0d, 0x56, 0xc6, 0x4d, 0xcf, 0x37, 0x68, 0x21, 0x8c, 0xea,
 	0x7a, 0xbe, 0x41, 0x4b, 0x01, 0xe6, 0xec, 0x0a, 0x98, 0xc3, 0xd1, 0xdc, 0xa9, 0x24, 0xc9, 0x25,
-	0x8e, 0x26, 0x14, 0x94, 0x5a, 0x5c, 0x90, 0x9f, 0x57, 0x9c, 0x6a, 0x94, 0xc6, 0xc5, 0xec, 0x5b,
-	0x9c, 0x2e, 0x14, 0xc1, 0xc5, 0x83, 0xe2, 0x33, 0x79, 0x74, 0x17, 0xa1, 0xe9, 0x97, 0x52, 0x27,
-	0xa0, 0x00, 0x66, 0x81, 0x14, 0x6b, 0x03, 0xc8, 0xfd, 0x4e, 0x06, 0x27, 0x1e, 0xc9, 0x31, 0x5e,
-	0x78, 0x24, 0xc7, 0xf8, 0xe0, 0x91, 0x1c, 0xe3, 0x84, 0xc7, 0x72, 0x0c, 0x17, 0x1e, 0xcb, 0x31,
-	0xdc, 0x78, 0x2c, 0xc7, 0x10, 0x25, 0x86, 0xe1, 0xfc, 0x92, 0xca, 0x82, 0xd4, 0xe2, 0x24, 0x36,
-	0x70, 0xb8, 0x1b, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x4e, 0x26, 0xd4, 0xc5, 0x1c, 0x02, 0x00,
+	0x8e, 0x26, 0x14, 0x94, 0x5a, 0x5c, 0x90, 0x9f, 0x57, 0x9c, 0xaa, 0xe4, 0xc3, 0xc5, 0xe5, 0x5b,
+	0x9c, 0x1e, 0x94, 0x5a, 0x58, 0x9a, 0x5a, 0x5c, 0x22, 0x24, 0xc1, 0xc5, 0x9e, 0x5c, 0x94, 0x9a,
+	0x58, 0x92, 0x5f, 0x04, 0xf1, 0x4e, 0x10, 0x8c, 0x2b, 0x24, 0xc6, 0xc5, 0x96, 0x98, 0x9b, 0x5f,
+	0x9a, 0x57, 0x02, 0x76, 0x32, 0x4b, 0x10, 0x94, 0x67, 0xc5, 0x03, 0x72, 0x0f, 0x4c, 0x95, 0x92,
+	0x08, 0x97, 0x10, 0xc2, 0x34, 0x98, 0x1d, 0x46, 0x1b, 0x19, 0xb9, 0x98, 0x7d, 0x8b, 0xd3, 0x85,
+	0x22, 0xb8, 0x78, 0x50, 0x82, 0x4f, 0x1e, 0xdd, 0xdb, 0x68, 0x8e, 0x94, 0x52, 0x27, 0xa0, 0x00,
+	0x66, 0x83, 0x90, 0x27, 0x17, 0x3b, 0xcc, 0x0b, 0x52, 0x58, 0xf4, 0x40, 0xe5, 0xa4, 0x94, 0x70,
+	0xcb, 0xc1, 0x8c, 0x92, 0x62, 0x6d, 0x00, 0x85, 0xb7, 0x93, 0xc1, 0x89, 0x47, 0x72, 0x8c, 0x17,
+	0x1e, 0xc9, 0x31, 0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7, 0x72, 0x0c,
+	0x37, 0x1e, 0xcb, 0x31, 0x44, 0x89, 0x61, 0x04, 0x77, 0x49, 0x65, 0x41, 0x6a, 0x71, 0x12, 0x1b,
+	0x38, 0x9d, 0x18, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0xbd, 0x74, 0x40, 0x13, 0xcc, 0x02, 0x00,
 	0x00,
 }
 
@@ -173,6 +266,7 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	Request(ctx context.Context, in *MsgRequest, opts ...grpc.CallOption) (*MsgRequestResponse, error)
 }
 
 type msgClient struct {
@@ -192,11 +286,21 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) Request(ctx context.Context, in *MsgRequest, opts ...grpc.CallOption) (*MsgRequestResponse, error) {
+	out := new(MsgRequestResponse)
+	err := c.cc.Invoke(ctx, "/zigtest.faucet.Msg/Request", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	Request(context.Context, *MsgRequest) (*MsgRequestResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -205,6 +309,9 @@ type UnimplementedMsgServer struct {
 
 func (*UnimplementedMsgServer) UpdateParams(ctx context.Context, req *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (*UnimplementedMsgServer) Request(ctx context.Context, req *MsgRequest) (*MsgRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Request not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -229,6 +336,24 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_Request_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).Request(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/zigtest.faucet.Msg/Request",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).Request(ctx, req.(*MsgRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Msg_serviceDesc = _Msg_serviceDesc
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "zigtest.faucet.Msg",
@@ -237,6 +362,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "Request",
+			Handler:    _Msg_Request_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -306,6 +435,64 @@ func (m *MsgUpdateParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Amount != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.Amount))
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgRequestResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgRequestResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgRequestResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -333,6 +520,31 @@ func (m *MsgUpdateParams) Size() (n int) {
 }
 
 func (m *MsgUpdateParamsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.Amount != 0 {
+		n += 1 + sovTx(uint64(m.Amount))
+	}
+	return n
+}
+
+func (m *MsgRequestResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -489,6 +701,157 @@ func (m *MsgUpdateParamsResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgUpdateParamsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Amount", wireType)
+			}
+			m.Amount = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Amount |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgRequestResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgRequestResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgRequestResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
